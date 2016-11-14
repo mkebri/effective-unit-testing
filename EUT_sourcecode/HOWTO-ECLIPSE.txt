@@ -1,0 +1,36 @@
+SETTING UP ECLIPSE FOR THE SAMPLE CODE
+
+The sample code has been provided in a set of Maven projects. In order to 
+get the code smoothly into your Eclipse IDE, you need to perform the 
+following steps:
+
+1. Generate the Eclipse project files
+
+  The Eclipse project files (.project and .classpath) are system-specific
+  and not included out of the box. You can let Maven generate those files 
+  for you by executing the following command in the console/command prompt 
+  from the root directory, next to a file called "pom.xml": 
+
+  $ mvn eclipse:eclipse
+
+2. Generate the M2_REPO classpath variable
+
+  The Maven Eclipse plugin generates the .classpath file with 
+  references to an Eclipse classpath variable named "M2_REPO". That variable
+  doesn't exist in Eclipse by default so you'll need to create it for your
+  Eclipse workspace (if you haven't already). Execute the following command, 
+  telling Maven the location of your Eclipse workspace directory:
+
+  $ mvn -Declipse.workspace=<path-to-eclipse-workspace> eclipse:add-maven-repo
+
+3. Import the modules as separate projects 
+
+  The sample code is organized as one big multi-module Maven project, which 
+  means that we'll have one Eclipse project per module (chapter). In order to 
+  import the modules as regular Java projects into Eclipse, perform these 
+  steps in Eclipse:
+
+  1. Import > Existing Projects into Workspace
+  2. Type in the sample code package's root directory and click "Refresh"
+  3. Select all listed projects and click "Finish"
+

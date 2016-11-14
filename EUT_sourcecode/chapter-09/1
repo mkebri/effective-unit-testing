@@ -1,0 +1,26 @@
+OVERVIEW
+
+This is a sample project for demonstrating a remote build. The project in question is JspTest (http://github.com/jsptest/jsptest). It's a multimodule Maven 2 project, which serves to prove that the remote build script provided works with more complicated builds just as well as with simpler builds.
+
+SYSTEM REQUIREMENTS
+
+What you need for running the remote build is a UNIX/Linux family operating system capable of running Bash shell scripts. You also need to have an SSH client installed (both ssh and scp). On a Windows computer, your best bet is to install the Cygwin environment.
+
+RUNNING THE BUILD LOCALLY
+
+Being a standard Maven 2 project, you should be able to run "mvn clean test" and similar commands right from the project's root directory (this directory). Do that first just to be sure that things work locally:
+
+  mvn clean test
+
+You should see all of JspTest's submodules being built successfully.
+
+RUNNING THE BUILD REMOTELY
+
+For running the build remotely we need a couple of things in place:
+
+1) a UNIX/Linux server for delegating the build to, 
+2) access to that server using SSH and passwordless private key authentication
+
+The project's root directory contains two shell scripts: "remote-setup.sh" and "build.sh". The former is used for preparing a remote server for our use as a remote build slave. The latter script is used as a frontend for Maven, which offloads the actual build work to the remote server if you've got one set up.
+
+
